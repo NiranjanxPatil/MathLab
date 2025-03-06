@@ -8,15 +8,15 @@ genai.configure(api_key="AIzaSyCjjFyXDIbnjOdOSLuj0W3trl3eCXdkQ6g")
 
 
 def generate_practice_questions(topic, difficulty, num_questions):
-    prompt = f"Generate {num_questions} {difficulty} level math practice questions on {topic}. Provide questions in a numbered list format."
-    model = genai.GenerativeModel("gemini-pro")
+    prompt = f"Generate {num_questions} {difficulty} level math practice questions on {topic}. Provide questions in a numbered list format without extra space in lines and other stuff. and give only question not other stuff only Q "
+    model = genai.GenerativeModel("gemini-1.5-pro-latest")
     response = model.generate_content(prompt)
     return response.text
 
 
 def evaluate_answers(questions, user_answers):
     prompt = f"Check the following answers for these math questions:\n\nQuestions:\n{questions}\n\nUser Answers:\n{user_answers}\n\nProvide correct answers and feedback in a clear format."
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("gemini-1.5-flash-latest")
     response = model.generate_content(prompt)
     return response.text
 
