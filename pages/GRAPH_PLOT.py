@@ -124,6 +124,8 @@ def plot_probability_distribution(mu, sigma, x_range):
     return fig
 
 # Streamlit UI
+st.image('graphplot.png')
+
 st.title("Advanced Real-Time Graphing App 📈")
 
 graph_type = st.selectbox("Select Graph Type:", [
