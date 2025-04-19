@@ -1,34 +1,47 @@
 from manim import *
 
-class CylinderVolume(Scene):
+class ConsecutiveOddSquares(Scene):
     def construct(self):
-        plane = NumberPlane(x_range=[-6,6,1], y_range=[-6,6,1], axis_config={"include_numbers":True})
-        self.add(plane)
-        cylinder = Cylinder(radius=5, height=15, fill_opacity=0.5, fill_color=BLUE)
-        cylinder.shift(2*DOWN)
-        self.play(Create(cylinder))
-        diameter_text = Tex("Diameter = 10 m").next_to(cylinder, UP)
-        height_text = Tex("Height = 15 m").next_to(cylinder, RIGHT)
-        self.play(Write(diameter_text), Write(height_text))
-        radius = DecimalNumber(5, num_decimal_places=2, include_sign=False).next_to(cylinder, LEFT+UP)
-        radius.add_updater(lambda x: x.set_value(cylinder.radius))
-        height = DecimalNumber(15, num_decimal_places=2, include_sign=False).next_to(cylinder, RIGHT+UP)
-        height.add_updater(lambda x: x.set_value(cylinder.height))
+        background = Rectangle(width=14, height=8, fill_color=DARK_GRAY, fill_opacity=1).to_edge(LEFT, buff=0)
+        self.add(background)
 
-        self.play(Write(radius), Write(height))
-        pi = MathTex(r"\pi").scale(1.5).next_to(radius, LEFT)
-        self.play(Write(pi))
-        formula = MathTex(r"V = \pi r^2 h").scale(1.5).to_edge(UP)
-        self.play(Write(formula))
-        r_squared = MathTex(r"r^2 = 5^2 = 25").next_to(formula, DOWN)
-        self.play(Write(r_squared))
-        volume_calc = MathTex(r"V = \pi \times 25 \times 15").next_to(r_squared, DOWN)
-        self.play(Write(volume_calc))
-        approx_volume = MathTex(r"V \approx 1178.1").next_to(volume_calc, DOWN)
-        self.play(Write(approx_volume))
-        final_answer = Tex("Volume $\\approx$ 1178.1 m$^3$").to_edge(DOWN)
-        self.play(Write(final_answer))
+        title = Tex("Solving a Quadratic Equation").scale(1.2).to_edge(UP, buff=0.5).set_color(YELLOW)
+        self.play(Write(title))
         self.wait(1)
 
-        self.play(FadeOut(cylinder), FadeOut(diameter_text), FadeOut(height_text), FadeOut(radius), FadeOut(height), FadeOut(pi), FadeOut(formula), FadeOut(r_squared), FadeOut(volume_calc), FadeOut(approx_volume), FadeOut(final_answer))
+
+        problem = MathTex("x^2 + (x+2)^2 = 394").scale(1.1).set_color(BLUE).next_to(title, DOWN, buff=1)
+        self.play(Write(problem))
         self.wait(1)
+
+
+        expand = MathTex("x^2 + x^2 + 4x + 4 = 394").scale(1).set_color(GREEN).next_to(problem, DOWN, buff=1)
+        self.play(TransformMatchingTex(problem.copy(), expand))
+        self.wait(1)
+
+
+        simplify = MathTex("2x^2 + 4x - 390 = 0").scale(1).set_color(GOLD).next_to(expand, DOWN, buff=1)
+        self.play(TransformMatchingTex(expand.copy(), simplify))
+        self.wait(1)
+
+
+        divide = MathTex("x^2 + 2x - 195 = 0").scale(1).set_color(PURPLE).next_to(simplify, DOWN, buff=1)
+        self.play(TransformMatchingTex(simplify.copy(), divide))
+        self.wait(1)
+
+
+        factoring = MathTex("(x-13)(x+15) = 0").scale(1).set_color(TEAL).next_to(divide, DOWN, buff=1)
+        self.play(TransformMatchingTex(divide.copy(), factoring))
+        self.wait(1)
+
+
+        solutions = MathTex("x = 13, x = -15").scale(1).set_color(RED).next_to(factoring, DOWN, buff=1)
+        self.play(Write(solutions))
+        self.wait(1)
+
+
+        odd_numbers = MathTex("13, 15 \\text{ or } -15, -13").scale(1).set_color(PINK).next_to(solutions, DOWN, buff=1)
+        self.play(Write(odd_numbers))
+        self.wait(2)
+
+        self.play(FadeOut(title), FadeOut(problem), FadeOut(expand), FadeOut(simplify), FadeOut(divide), FadeOut(factoring), FadeOut(solutions), FadeOut(odd_numbers), FadeOut(background))
