@@ -2,13 +2,12 @@ import streamlit as st
 import google.generativeai as genai
 import subprocess
 import os
-import google.generativeai as genai
 
 # Configure Google Generative AI
 genai.configure(api_key="AIzaSyAv_Hozwv3jAycftamoGYb1Gc0rMl5_j4c")
 model = genai.GenerativeModel("gemini-1.5-flash")
 
-# Set page config (Moved this above everything else)
+# Set page config
 st.set_page_config(page_title="Math Solution and Video Generator", layout="wide")
 
 # Streamlit UI setup
@@ -30,10 +29,31 @@ for chat in st.session_state["chat_history"]:
 st.subheader("Math Solver")
 user_input = st.text_input("Enter a math equation or problem here:")
 
+
 def clean_manim_code(raw_code):
-    """Removes unnecessary prefix/suffix and formats the Manim script correctly."""
+    """Cleans Manim script and removes any invalid or non-ASCII characters."""
     cleaned_code = raw_code.strip().replace("```python", "").replace("```", "").strip()
+
+    # Remove invalid UTF-8 sequences
+    cleaned_code = cleaned_code.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
+
+    # Replace common problematic unicode characters
+    replacements = {
+        "²": "^2",
+        "°": " degrees",
+        "–": "-",  # en dash
+        "—": "-",  # em dash
+        "“": '"',
+        "”": '"',
+        "’": "'",
+        "‘": "'",
+        "\ufffd": "",  # Unicode replacement character
+    }
+    for bad_char, replacement in replacements.items():
+        cleaned_code = cleaned_code.replace(bad_char, replacement)
+
     return cleaned_code
+
 
 def handle_error_and_retry(error_message, manim_code, attempt_count):
     """Send the error back to the API to fix and retry."""
@@ -47,17 +67,16 @@ def handle_error_and_retry(error_message, manim_code, attempt_count):
     response = model.generate_content([retry_prompt])
     corrected_code = clean_manim_code(response.text)
 
-    # Save corrected code to file
-    with open("generate_solution.py", "w") as script_file:
+    with open("generate_solution.py", "w", encoding="utf-8") as script_file:
         script_file.write(corrected_code)
 
     return corrected_code, attempt_count + 1
+
 
 # Solve Button
 if st.button("Solve"):
     if user_input:
         try:
-            # Request solution steps from Gemini
             response = model.generate_content([f"Provide step-by-step solution for: {user_input}"])
             solution_steps = response.text
             st.session_state["chat_history"].append({
@@ -73,25 +92,27 @@ if st.button("Solve"):
 if st.button("Generate Video"):
     if user_input:
         try:
-            # Request Python code for Manim animations
+            # Updated Prompt with Bonus Tip
             prompt = (
                 f"Create a Manim script that visualizes the solution for the following math problem: {user_input}.\n"
-                f"Ensure the script follows these guidelines strictly:\n"
+                f"Ensure the script follows these strict guidelines:\n"
                 f"- Use `MathTex` or `Tex` for LaTeX equations.\n"
+                f"- Avoid non-ASCII characters like ², °, or Unicode symbols.\n"
                 f"- Start with `from manim import *` and define a class inheriting from `Scene`.\n"
                 f"- Include shapes, figures, and graphs where necessary.\n"
                 f"- Use different colors, backgrounds, animations, and effects to enhance creativity.\n"
                 f"- Add more movements and creative visuals to make the solution engaging.\n"
-                f"- Return only the Manim script without any explanations, comments, or formatting markers."
+                f"- Return only the Manim script without explanations, comments, or formatting markers."
             )
+
             response = model.generate_content([prompt])
             manim_code = clean_manim_code(response.text)
 
-            # Save Manim code to generate_solution.py
-            with open("generate_solution.py", "w") as script_file:
+            # Save cleaned code to file
+            with open("generate_solution.py", "w", encoding="utf-8") as script_file:
                 script_file.write(manim_code)
 
-            retry_limit = 3  # Increased retry attempts from 2 to 3
+            retry_limit = 3
             attempts = 0
             progress_bar = st.progress(0)
 
@@ -119,9 +140,11 @@ if st.button("Generate Video"):
                 except Exception as e:
                     error_message = str(e)
                     manim_code, attempts = handle_error_and_retry(error_message, manim_code, attempts)
+
                 progress_bar.progress(int((attempts + 1) * 50 / retry_limit))
 
             if attempts == retry_limit:
                 st.error("Failed to generate video after 3 attempts.")
+
         except Exception as e:
             st.error(f"Error generating video: {e}")
