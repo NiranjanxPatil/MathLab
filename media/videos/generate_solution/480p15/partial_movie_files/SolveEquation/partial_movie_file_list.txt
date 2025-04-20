@@ -1,0 +1,9 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/1185818338_926294526_223132457.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/624642324_2913175862_1302237313.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/624642324_216103800_2019497932.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/624642324_1254163681_2019497932.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/624642324_2424913991_2019497932.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/624642324_2088606957_2019497932.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/624642324_4217992463_365871543.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/SolveEquation/624642324_3252147497_3199286769.mp4'

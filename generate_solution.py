@@ -1,41 +1,40 @@
 from manim import *
 
-class SquareArea(Scene):
+class TriangleArea(Scene):
     def construct(self):
-        square = Square(side_length=3, color=BLUE)
-        square.shift(2*DOWN + 2*LEFT)
-        fifteen = MathTex("15").scale(1.5).next_to(square, RIGHT, buff=0.5)
-        cm = MathTex("cm").scale(1).next_to(fifteen, DOWN, buff=0.2)
-        fifteen_cm = VGroup(fifteen, cm)
+        title = Tex("Finding the Area of a Triangle").scale(1.2).to_edge(UP)
+        self.play(Write(title))
 
+        rect = Rectangle(width=14, height=8, color=WHITE, fill_opacity=0.1)
+        self.add(rect)
 
-        self.play(Create(square), Write(fifteen_cm))
+        triangle = Polygon([-4, -2, 0], [4, -2, 0], [0, 2, 0], color=BLUE, fill_opacity=0.7)
+        base = Line([-4,-2,0],[4,-2,0],color=YELLOW,stroke_width=4)
+        height = Line([0,-2,0],[0,2,0],color=GREEN,stroke_width=4)
+
+        self.play(Create(triangle))
+        self.play(Create(base),Create(height))
+
+        base_text = MathTex("b = 8").scale(0.7).next_to(base,DOWN)
+        height_text = MathTex("h = 5").scale(0.7).next_to(height,RIGHT)
+
+        self.play(Write(base_text),Write(height_text))
+
+        formula_step1 = MathTex("Area = \\frac{1}{2} \\times base \\times height").scale(0.7)
+        formula_step2 = MathTex("Area = \\frac{1}{2} \\times 8 \\times 5").scale(0.7)
+        formula_step3 = MathTex("Area = 20").scale(0.7)
+
+        formula_group = VGroup(formula_step1, formula_step2, formula_step3).arrange(DOWN, buff=0.5).move_to(ORIGIN).shift(DOWN*2)
+
+        self.play(Write(formula_step1))
+        self.wait(1)
+        self.play(TransformMatchingTex(formula_step1,formula_step2))
+        self.wait(1)
+        self.play(TransformMatchingTex(formula_step2,formula_step3))
         self.wait(1)
 
-        formula = MathTex("Area = side \\times side").to_edge(UP)
-        self.play(Write(formula))
-        self.wait(1)
 
-        calculation = MathTex("Area = 15 \\times 15").next_to(formula, DOWN, buff=1)
-        self.play(Write(calculation))
-        self.wait(1)
-
-
-        result = MathTex("Area = 225").next_to(calculation, DOWN, buff=1)
-        self.play(Write(result))
-        self.wait(1)
-
-        cm2 = MathTex("cm^2").next_to(result, RIGHT, buff=0.5)
-        self.play(Write(cm2))
-        self.wait(1)
-
-
-        bigger_square = Square(side_length=7.5, color=GREEN).move_to(ORIGIN)
-        self.play(Transform(square, bigger_square))
-        self.wait(1)
-
-        self.play(FadeOut(fifteen_cm), FadeOut(formula), FadeOut(calculation), FadeOut(result), FadeOut(cm2))
-
-        final_result = MathTex("Area = 225 cm^2").scale(2).to_edge(DOWN)
-        self.play(Write(final_result))
+        final_answer = MathTex("Area = 20 \, cm^2").scale(1).to_edge(DOWN)
+        self.play(Write(final_answer))
         self.wait(2)
+        self.play(FadeOut(title),FadeOut(triangle),FadeOut(base),FadeOut(height),FadeOut(base_text),FadeOut(height_text),FadeOut(formula_group),FadeOut(final_answer))

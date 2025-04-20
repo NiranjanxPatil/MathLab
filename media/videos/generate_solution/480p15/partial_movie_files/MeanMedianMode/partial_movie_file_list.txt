@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/MeanMedianMode/1185818338_1444492564_223132457.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/MeanMedianMode/624642324_764157696_3318380863.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/MeanMedianMode/624642324_4217992463_1701075730.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/MeanMedianMode/624642324_3062103614_1590154716.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/MeanMedianMode/624642324_2552855209_3504745326.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/MeanMedianMode/624642324_687960774_871979047.mp4'
