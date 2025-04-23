@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/CircleCalculations/1185818338_3370447110_223132457.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/CircleCalculations/624642324_3128350197_3651520427.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/CircleCalculations/624642324_1183379240_2916741520.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/CircleCalculations/624642324_1812251058_1481117411.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/CircleCalculations/624642324_4217992463_3485325894.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/CircleCalculations/624642324_3080450097_1180274018.mp4'

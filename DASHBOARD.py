@@ -23,7 +23,7 @@ def sidebar():
     st.sidebar.title("📌 Navigation")
     st.sidebar.markdown("Welcome to Math-Lab")
     st.sidebar.image(r"C:\\projects\\temppycharm\\streamlit\\mathlab.png", width=200)
-    options = ["🏠 Home", "📞 Contact Us", "ℹ️ About EduCare", "📚 Course List", "💻 Source Code & Tech"]
+    options = ["🏠 Home", "📞 Contact Us", "ℹ️ About MathLab", "💻 Source Code & Tech"]
     selection = st.sidebar.radio("Select Option", options)
     return selection
 
@@ -70,7 +70,7 @@ def main_dashboard():
 
 
 def combined_info():
-    st.title("ℹ️ About EduCare & Testimonials")
+    st.title("ℹ️ About MathLab & Testimonials")
     st.markdown("""
     **Our Mission**: To create a platform that bridges the gap between traditional education and modern learning.
     - 🏆 Award-winning educational platform trusted by thousands.
@@ -82,24 +82,6 @@ def combined_info():
     - 📈 Career-oriented roadmap to help students excel.
     """)
 
-    st.subheader("🌟 Testimonials")
-    testimonials = [
-        {"name": "Alice Johnson", "feedback": "EduCare transformed my career! The AI-driven courses are outstanding."},
-        {"name": "Mark Williams",
-         "feedback": "The best platform for data science and AI learning. Highly recommended!"},
-        {"name": "Sophia Patel", "feedback": "Loved the interactive lessons and community support."},
-    ]
-
-    for t in testimonials:
-        st.markdown(f"**{t['name']}**: \"{t['feedback']}\"")
-
-    st.subheader("📅 Webinars & Events")
-    st.markdown("""
-    Stay updated with our latest events and webinars:
-    - **AI & ML Bootcamp** - January 20, 2025
-    - **Data Science Career Talk** - February 5, 2025
-    - **Cloud Computing Masterclass** - March 10, 2025
-    """)
 
 
 def contact_us():
@@ -125,14 +107,6 @@ def contact_us():
         st.markdown("**Support:** We’ll respond to you shortly after our lunch break. 😊")
 
 
-def course_list():
-    st.title("📚 Our Courses")
-    st.markdown("""
-    - **Web Development**: Build websites and web apps from scratch.
-    - **Data Science**: Learn the fundamentals of data analytics and machine learning.
-    """)
-
-
 def source_code_tech():
     st.title("💻 Source Code & Tech")
     st.markdown("""
@@ -148,16 +122,6 @@ def source_code_tech():
     """)
 
 
-def course_stats():
-    st.title("📊 Course Enrollment Statistics")
-    courses = ["Web Dev", "Data Science", "AI & ML", "Cloud Computing"]
-    enrollments = [150, 200, 175, 120]
-    fig, ax = plt.subplots()
-    ax.bar(courses, enrollments, color="#2196F3")
-    ax.set_xlabel("Courses")
-    ax.set_ylabel("Enrollments")
-    ax.set_title("Number of Enrollments per Course")
-    st.pyplot(fig)
 
 
 def footer():

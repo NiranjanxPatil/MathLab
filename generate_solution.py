@@ -9,32 +9,27 @@ class TriangleArea(Scene):
         self.add(rect)
 
         triangle = Polygon([-4, -2, 0], [4, -2, 0], [0, 2, 0], color=BLUE, fill_opacity=0.7)
-        base = Line([-4,-2,0],[4,-2,0],color=YELLOW,stroke_width=4)
-        height = Line([0,-2,0],[0,2,0],color=GREEN,stroke_width=4)
-
         self.play(Create(triangle))
-        self.play(Create(base),Create(height))
 
-        base_text = MathTex("b = 8").scale(0.7).next_to(base,DOWN)
-        height_text = MathTex("h = 5").scale(0.7).next_to(height,RIGHT)
+        base = Line([-4, -2, 0], [4, -2, 0]).set_color(YELLOW)
+        height = Line([0, 2, 0], [0, -2, 0]).set_color(YELLOW)
+        base_label = MathTex("8 \\text{ cm}").next_to(base, DOWN)
+        height_label = MathTex("5 \\text{ cm}").next_to(height, RIGHT, buff=0.2)
 
-        self.play(Write(base_text),Write(height_text))
 
-        formula_step1 = MathTex("Area = \\frac{1}{2} \\times base \\times height").scale(0.7)
-        formula_step2 = MathTex("Area = \\frac{1}{2} \\times 8 \\times 5").scale(0.7)
-        formula_step3 = MathTex("Area = 20").scale(0.7)
+        self.play(Create(base), Create(height), Write(base_label), Write(height_label))
 
-        formula_group = VGroup(formula_step1, formula_step2, formula_step3).arrange(DOWN, buff=0.5).move_to(ORIGIN).shift(DOWN*2)
+        formula1 = MathTex("Area = \\frac{1}{2} \\times base \\times height").scale(0.7)
+        formula2 = MathTex("Area = \\frac{1}{2} \\times 8 \\text{ cm} \\times 5 \\text{ cm}").scale(0.7)
+        formula3 = MathTex("Area = 20 \\text{ cm}^2").scale(0.7)
 
-        self.play(Write(formula_step1))
+        formula_group = VGroup(formula1, formula2, formula3).arrange(DOWN, buff=0.5).move_to(2*RIGHT+UP)
+
+        self.play(Write(formula1))
         self.wait(1)
-        self.play(TransformMatchingTex(formula_step1,formula_step2))
+        self.play(TransformMatchingTex(formula1, formula2))
         self.wait(1)
-        self.play(TransformMatchingTex(formula_step2,formula_step3))
-        self.wait(1)
-
-
-        final_answer = MathTex("Area = 20 \, cm^2").scale(1).to_edge(DOWN)
-        self.play(Write(final_answer))
+        self.play(TransformMatchingTex(formula2, formula3))
         self.wait(2)
-        self.play(FadeOut(title),FadeOut(triangle),FadeOut(base),FadeOut(height),FadeOut(base_text),FadeOut(height_text),FadeOut(formula_group),FadeOut(final_answer))
+
+        self.play(FadeOut(formula_group), FadeOut(title), FadeOut(triangle), FadeOut(base), FadeOut(height), FadeOut(base_label), FadeOut(height_label))
