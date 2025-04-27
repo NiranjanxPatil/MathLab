@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/StreamlitExplanation/1185818338_3325565009_223132457.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/StreamlitExplanation/624642324_4239415956_2930797562.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/StreamlitExplanation/624642324_3073140327_476624542.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/StreamlitExplanation/624642324_3938128947_3968505049.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/StreamlitExplanation/624642324_2844360058_3384955320.mp4'
+file 'file:C:/projects/temppycharm/streamlit/media/videos/generate_solution/480p15/partial_movie_files/StreamlitExplanation/624642324_3592747062_3729064228.mp4'

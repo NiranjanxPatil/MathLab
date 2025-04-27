@@ -85,6 +85,7 @@ if st.button("Generate Video"):
                 f"Return only valid Python code. No explanation, markdown, or comments."
                 f"- also use figures and diagrams neetly if they are necceassary\n"
                 f"- with proper transition and animation.\n"
+                f"- proper color combinations and background.\n"
                 f"- make sure objects and elemets not overlap each other on screen and not fall out of screen may stay in fix frame.\n"
 
             )
